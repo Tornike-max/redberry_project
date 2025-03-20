@@ -1,9 +1,9 @@
 import { Key, useEffect, useRef, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { useGetDepartments } from "../../hooks/useGetDepartments";
 import { useSearchParams } from "react-router-dom";
+import { useGetPriorities } from "../../hooks/useGetPriorities";
 
-const DepartmentsDropdown = ({
+const PrioritiesDropdown = ({
   showRegionDropdown,
   setShowRegionDropdown,
 }: {
@@ -12,7 +12,7 @@ const DepartmentsDropdown = ({
 }) => {
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data, isPending } = useGetDepartments();
+  const { data, isPending } = useGetPriorities();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -105,4 +105,4 @@ const DepartmentsDropdown = ({
   );
 };
 
-export default DepartmentsDropdown;
+export default PrioritiesDropdown;

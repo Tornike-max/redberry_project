@@ -20,9 +20,9 @@ const MainLayout = () => {
   }, [pathname]);
 
   return (
-    <div className="max-w-[1920px] w-full mx-auto bg-[#FFFFFF] min-h-screen flex justify-start items-center flex-col px-[120px]">
+    <div className="max-w-[1920px] w-full mx-auto bg-[#FFFFFF] min-h-screen flex justify-start items-center flex-col">
         <Header />
-        <main className="mt-[100px] w-full flex justify-center items-center h-auto pb-[300px] gap-[20px]">
+        <main className="w-full mt-[100px] flex justify-center items-center h-auto gap-[20px]">
             <Outlet />
         </main>
     </div>
