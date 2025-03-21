@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import DepartmentsDropdown from "./DepartmentsDropdown";
 import PrioritiesDropdown from "./PrioritiesDropdown";
+import CoWorkersDropdown from "./CoWorkersDropdown";
+import { FilterInterface } from "../../types/types";
 
 
 
@@ -10,16 +13,13 @@ const FilterSection = () => {
   const navigate = useNavigate();
 
   const [filters, setFilters] = useState<FilterInterface>({
-    region: searchParams.get("region") || "",
-    price: searchParams.get("price") || "",
-    area: searchParams.get("area") || "",
-    bedrooms: searchParams.get("bedrooms") || "",
+    department: searchParams.get("department") || "",
+    priority: searchParams.get("priority") || "",
+    worker: searchParams.get("worker") || "",
   });
-  const [showRegionDropdown, setShowRegionDropdown] = useState(false);
+  const [showDepartmentsDropdown, setshowDepartmentsDropdown] = useState(false);
   const [prioritiesDropdown, setPrioritiesDropdown] = useState(false);
-  const [showAreaDropdown, setShowAreaDropdown] = useState(false);
-  const [showBedroomsDropdown, setShowBedroomsDropdown] = useState(false);
-  const [isAgentModalOpen, setIsAgentModalOpen] = useState(false);
+  const [coWorkersDropdown, setCoWorkersDropdown] = useState(false);
 
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
@@ -45,22 +45,19 @@ const FilterSection = () => {
 
   useEffect(() => {
     const closeAllDropdownsExcept = (openDropdown: string) => {
-      setShowRegionDropdown(openDropdown === "region");
+      setshowDepartmentsDropdown(openDropdown === "region");
       setPrioritiesDropdown(openDropdown === "price");
-      setShowAreaDropdown(openDropdown === "area");
-      setShowBedroomsDropdown(openDropdown === "bedrooms");
+      setCoWorkersDropdown(openDropdown === "area");
     };
 
-    if (showRegionDropdown) closeAllDropdownsExcept("region");
+    if (showDepartmentsDropdown) closeAllDropdownsExcept("region");
     else if (prioritiesDropdown) closeAllDropdownsExcept("price");
-    else if (showAreaDropdown) closeAllDropdownsExcept("area");
-    else if (showBedroomsDropdown) closeAllDropdownsExcept("bedrooms");
+    else if (coWorkersDropdown) closeAllDropdownsExcept("area");
   }, [
-    showRegionDropdown,
+    showDepartmentsDropdown,
     prioritiesDropdown,
-    showAreaDropdown,
-    showBedroomsDropdown,
-  ]);
+    coWorkersDropdown 
+   ]);
 
   const handleFilterChange = (value: string, key: keyof FilterInterface) => {
     setFilters((prevFilters: any) => ({
@@ -76,23 +73,21 @@ const FilterSection = () => {
     }));
   };
 
-  const handleOpenAgentModal = () => {
-    setIsAgentModalOpen(true);
-  };
+ 
 
   return (
         <div className="w-full border-[#DBDBDB] rounded-[10px] flex items-center gap-4  z-30">
           <DepartmentsDropdown
-            showRegionDropdown={showRegionDropdown}
-            setShowRegionDropdown={setShowRegionDropdown}
+            showDepartmentsDropdown={showDepartmentsDropdown}
+            setshowDepartmentsDropdown={setshowDepartmentsDropdown}
           />
           <PrioritiesDropdown
-            showRegionDropdown={showRegionDropdown}
-            setShowRegionDropdown={setShowRegionDropdown}
+            prioritiesDropdown={prioritiesDropdown}
+            setPrioritiesDropdown={setPrioritiesDropdown}
           />
-          <DepartmentsDropdown
-          showRegionDropdown={showRegionDropdown}
-          setShowRegionDropdown={setShowRegionDropdown}
+          <CoWorkersDropdown
+          coWorkersDropdown={coWorkersDropdown}
+          setCoWorkersDropdown={setCoWorkersDropdown}
         />
         </div>
   );

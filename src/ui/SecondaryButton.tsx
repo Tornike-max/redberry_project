@@ -18,7 +18,7 @@ const SecondaryButton = ({
           : size === "lg"
           ? "py-[12px] px-[16px]"
           : "py-[10px] px-[16px]"
-      } border-[1px] border-[#F93B1D] text-[#F93B1D] hover:bg-[#F93B1D] hover:text-[#FFFFFF] text-[16px] leading-[19.2px] font-firago font-medium text-center  duration-200 transition-all ease-in-out`}
+      } border-[1px] border-[#8338EC] text-[#343A40] hover:bg-[#8338EC] hover:text-[#FFFFFF] text-[16px] leading-[19.2px] font-firago font-medium text-center  duration-200 transition-all ease-in-out cursor-pointer`}
       onClick={onClick}
     >
       {children}
